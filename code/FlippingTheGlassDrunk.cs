@@ -156,5 +156,14 @@ namespace FlippingTheGlassDrunk
 			
 			base.MoveToSpawnpoint(pawn);
 		}
+		
+		
+		public override void DoPlayerNoclip( Client player )
+		{
+		}
+
+		public override void DoPlayerDevCam( Client player )
+		{
+		}
 	}
 }
