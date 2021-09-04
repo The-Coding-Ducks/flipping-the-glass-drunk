@@ -1,8 +1,6 @@
 ﻿.container {
   flex-direction: column;
   justify-content: space-between;
-  pointer-events: visible;
-  cursor: crosshair;
   width: 100%;
 
   .banner {
@@ -11,4 +9,9 @@
     height: 10%;
     box-shadow: 0 0 15px 15px rgba(0, 0, 0, 100);
   }
+}
+
+.gameactive {
+  pointer-events: visible;
+  cursor: crosshair;
 }

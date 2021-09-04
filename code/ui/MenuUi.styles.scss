@@ -1,4 +1,27 @@
 ﻿.menuui {
   height: 80%;
   margin: 30px 15px;
+
+  pointer-events: all;
+  cursor: default;
+
+  .start-button-container {
+    width: 100%;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 7%;
+    
+    .start-button {
+      font-size: 75px;
+      color: #ffffff;
+      font-weight: bold;
+      text-shadow: 5px 5px #000;
+    }
+    
+    .start-button:hover {
+      cursor: pointer;
+      font-style: italic;
+    }
+  }
+  
 }

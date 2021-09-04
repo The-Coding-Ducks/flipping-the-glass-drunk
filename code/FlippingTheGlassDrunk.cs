@@ -34,6 +34,12 @@ namespace FlippingTheGlassDrunk
 		{
 			Event.Run( "GameStateChanged", isGameRunning );
 		}
+
+		[ServerCmd]
+		public static void FlipTheGlass()
+		{
+			((FlippingTheGlassDrunk)Current).StartGame();
+		}
 		
 		public void StartGame()
 		{
