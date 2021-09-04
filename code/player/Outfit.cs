@@ -9,9 +9,13 @@ namespace FlippingTheGlassDrunk.player
 		private ModelEntity Trousers { get; set; }
 		private ModelEntity Shoes { get; set; }
 
-		private Player Owner { get; set; } 
-		
-		
+		private Player Owner { get; }
+
+		public Outfit( Player owner )
+		{
+			Owner = owner;
+		}
+
 		public void ResetOutfit()
 		{
 			Hat?.Delete();
@@ -67,6 +71,7 @@ namespace FlippingTheGlassDrunk.player
 
 		public void LoadOutfit( string name )
 		{
+			ResetOutfit();
 			switch ( name )
 			{
 				case "lad":

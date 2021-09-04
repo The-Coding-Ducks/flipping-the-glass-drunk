@@ -28,10 +28,9 @@ namespace FlippingTheGlassDrunk.player
 
 			if ( Outfit == null )
 			{
-				Outfit = new Outfit();
+				Outfit = new Outfit(this);
 			}
 
-			Outfit.ResetOutfit();
 			Outfit.LoadOutfit("lad");
 
 			GlowActive = true;
