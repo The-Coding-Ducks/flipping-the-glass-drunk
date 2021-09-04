@@ -9,7 +9,7 @@ namespace FlippingTheGlassDrunk.ui
 			Host.AssertClient();
 
 			StyleSheet.Load( "/ui/FilmUi.styles.scss" );
-			SetTemplate("/ui/FilmUI.html");
+			SetTemplate("/ui/FilmUi.html");
 		}
 	}
 }

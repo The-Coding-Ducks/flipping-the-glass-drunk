@@ -27,6 +27,12 @@ namespace FlippingTheGlassDrunk
 			SetClientToSpectator(client);
 		}
 
+		[ClientRpc]
+		public void RunGameStateChangedEvent(bool isGameRunning)
+		{
+			Event.Run( "GameStateChanged", isGameRunning );
+		}
+		
 		public void StartGame()
 		{
 			Host.AssertServer();
@@ -35,7 +41,7 @@ namespace FlippingTheGlassDrunk
 			
 			IsGameRunning = true;
 
-			Event.Run( "GameStateChanged", IsGameRunning );
+			RunGameStateChangedEvent(IsGameRunning);
 
 			foreach ( Client client in Client.All.ToList() )
 			{
@@ -49,7 +55,7 @@ namespace FlippingTheGlassDrunk
 			
 			IsGameRunning = false;
 			
-			Event.Run( "GameStateChanged", IsGameRunning );
+			RunGameStateChangedEvent(IsGameRunning);
 
 			foreach ( Client client in Client.All.ToList() )
 			{

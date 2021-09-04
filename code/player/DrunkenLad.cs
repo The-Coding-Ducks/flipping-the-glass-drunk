@@ -45,6 +45,22 @@ namespace FlippingTheGlassDrunk.player
 			EnableAllCollisions = true;
 
 			base.Respawn();
+
+			Health = 3;
+			RunTakeDamageEvent();
+		}
+
+		[ClientRpc]
+		public void RunTakeDamageEvent()
+		{
+			Event.Run("TookDamage");
+		}
+		
+		public override void TakeDamage( DamageInfo info )
+		{
+			base.TakeDamage( info );
+			
+			RunTakeDamageEvent();
 		}
 
 		public override void Simulate( Client cl )
