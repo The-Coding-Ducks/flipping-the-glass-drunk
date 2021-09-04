@@ -39,6 +39,7 @@ namespace FlippingTheGlassDrunk.player
 
 			ActiveChild = new Wand();
 			ActiveChild.Owner = this;
+			ActiveChild.SetParent( this, true);
 
 			EnableDrawing = true;
 			EnableAllCollisions = true;

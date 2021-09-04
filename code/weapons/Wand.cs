@@ -8,6 +8,13 @@ namespace FlippingTheGlassDrunk.weapons
 	{
 		public override float PrimaryRate => 1;
 
+		public override void Spawn()
+		{
+			base.Spawn();
+			
+			SetModel("models/flipping_the_glass_drunk/wand/ftg_wand.vmdl");
+		}
+
 		public override async void AttackPrimary()
 		{
 			(Owner as AnimEntity)?.SetAnimBool( "b_attack", true );
