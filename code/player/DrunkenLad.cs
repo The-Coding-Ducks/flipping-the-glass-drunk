@@ -70,6 +70,8 @@ namespace FlippingTheGlassDrunk.player
 			BecomeRagdollOnClient( new Vector3(), DamageFlags.Bullet, new Vector3(), new Vector3(), 0 );
 			EnableDrawing = false;
 			EnableAllCollisions = false;
+
+			((FlippingTheGlassDrunk) Game.Current).SetClientToSpectator(GetClientOwner());
 		}
 
 		public override void Simulate( Client cl )

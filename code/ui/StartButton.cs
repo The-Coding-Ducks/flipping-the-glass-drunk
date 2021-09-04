@@ -11,14 +11,21 @@ namespace FlippingTheGlassDrunk.ui
 
 		public StartButton()
 		{
-			AddClass("start-button");
+			AddClass("title-font");
+			AddClass("start-button-container");
 
-			Label = Add.Label( "Flip The Glass!" );
+			Label = Add.Label( "Flip The Glass!", "button" );
 
 			AddEventListener( "onclick", () =>
 			{
 				FlippingTheGlassDrunk.FlipTheGlass();
 			} );
+		}
+		
+		[Event("ShowVictoryScreen")]
+		public void OnShowVictoryScreen(bool showVictoryScreen, Client client)
+		{
+			SetClass("hidden", showVictoryScreen);
 		}
 	}
 }

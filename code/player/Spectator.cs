@@ -11,6 +11,10 @@ namespace FlippingTheGlassDrunk.player
 
 			Camera = new TopDownCamera();
 			Controller = new SpectatorController();
+
+			Position = new Vector3( 0, 0, 0 );
+
+			EnableAllCollisions = false;
 		}
 	}
 }

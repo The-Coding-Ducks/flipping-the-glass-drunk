@@ -59,6 +59,12 @@ namespace FlippingTheGlassDrunk
 			}
 		}
 
+		[ClientRpc]
+		public void ShowVictoryScreen( Client winner )
+		{
+			Event.Run("ShowVictoryScreen", true, winner);
+		}
+
 		public void EndGame( Client winner )
 		{
 			Host.AssertServer();
@@ -66,6 +72,7 @@ namespace FlippingTheGlassDrunk
 			IsGameRunning = false;
 			
 			RunGameStateChangedEvent(IsGameRunning);
+			ShowVictoryScreen( winner );
 
 			foreach ( Client client in Client.All.ToList() )
 			{
@@ -73,12 +80,14 @@ namespace FlippingTheGlassDrunk
 			}
 		}
 
-		private void SetClientToSpectator( Client client )
+		public void SetClientToSpectator( Client client )
 		{
 			client.Pawn?.Delete();
 			Spectator spectator = new Spectator();
 			spectator.Respawn();
 			client.Pawn = spectator;
+			
+			RunGameStateChangedEvent( To.Single(client), false);
 		}
 
 		private void SetClientToDrunkenLad( Client client, string ladName )
@@ -94,6 +103,43 @@ namespace FlippingTheGlassDrunk
 		public static void Start()
 		{
 			((FlippingTheGlassDrunk) Current).StartGame();
+		}
+
+		public override void OnKilled( Entity pawn )
+		{
+			base.OnKilled( pawn );
+			
+			CheckGameState(null);
+		}
+
+		public override void ClientDisconnect( Client cl, NetworkDisconnectionReason reason )
+		{
+			base.ClientDisconnect( cl, reason );
+			
+			if ( IsServer )
+			{
+				CheckGameState(cl);
+			}
+		}
+
+		private void CheckGameState(Client ignore)
+		{
+			var playersAlive = All.OfType<DrunkenLad>()
+				.Where(lad => lad.Health > 0)
+				.Where( lad => lad.GetClientOwner() != ignore)
+				.ToArray();
+
+			Log.Info(playersAlive.Length);
+			if ( playersAlive.Length <= 1 && IsGameRunning )
+			{
+				if ( playersAlive.Length < 1 )
+				{
+					EndGame( Client.All.First() );
+					return;
+				}
+
+				EndGame(playersAlive.First().GetClientOwner());
+			}
 		}
 	}
 }
