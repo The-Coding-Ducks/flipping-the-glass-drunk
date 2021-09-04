@@ -45,7 +45,7 @@ namespace FlippingTheGlassDrunk
 		{
 			Host.AssertServer();
 			
-			if ( IsGameRunning ) return;
+			if ( IsGameRunning || Client.All.Count <= 1 ) return;
 			
 			IsGameRunning = true;
 
@@ -97,12 +97,6 @@ namespace FlippingTheGlassDrunk
 			drunkenLad.Lad = ladName;
 			drunkenLad.Respawn();
 			client.Pawn = drunkenLad;
-		}
-
-		[ServerCmd( "start_game" )]
-		public static void Start()
-		{
-			((FlippingTheGlassDrunk) Current).StartGame();
 		}
 
 		public override void OnKilled( Entity pawn )

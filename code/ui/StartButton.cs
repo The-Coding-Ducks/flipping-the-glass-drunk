@@ -18,7 +18,17 @@ namespace FlippingTheGlassDrunk.ui
 
 			AddEventListener( "onclick", () =>
 			{
-				FlippingTheGlassDrunk.FlipTheGlass();
+				if ( ((FlippingTheGlassDrunk)Game.Current).IsGameRunning )
+				{
+					ChatBox.AddChatEntry( "Conscience", "Flip a second glass are you crazy?!" );
+				} else if ( Client.All.Count <= 1 )
+				{
+					ChatBox.AddChatEntry( "Conscience", "Who do you wanna fight, better wait for your lads!" );
+				}
+				else
+				{
+					FlippingTheGlassDrunk.FlipTheGlass();
+				}
 			} );
 		}
 		
