@@ -23,7 +23,7 @@ namespace FlippingTheGlassDrunk.weapons
 			{
 				await Task.Delay( 350 );
 				MagicOrb magicOrb = new MagicOrb();
-				magicOrb.Position = Owner.EyePos + new Vector3( 35, -10, -25 ) * Owner.Rotation;
+				magicOrb.Position = Owner.EyePos + new Vector3( 45, -10, -25 ) * Owner.Rotation;
 				magicOrb.Rotation = Owner.Rotation;
 				magicOrb.Owner = Owner;
 				magicOrb.Shoot(Owner.Rotation);
