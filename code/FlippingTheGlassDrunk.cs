@@ -129,7 +129,6 @@ namespace FlippingTheGlassDrunk
 				.Where( lad => lad.GetClientOwner() != ignore)
 				.ToArray();
 
-			Log.Info(playersAlive.Length);
 			if ( playersAlive.Length <= 1 && IsGameRunning )
 			{
 				if ( playersAlive.Length < 1 )
@@ -140,6 +139,28 @@ namespace FlippingTheGlassDrunk
 
 				EndGame(playersAlive.First().GetClientOwner());
 			}
+		}
+
+		public override void MoveToSpawnpoint( Entity pawn )
+		{
+			if ( pawn.GetType() == typeof(DrunkenLad) )
+			{
+				var spawnpoints = All.OfType<SpawnPoint>()
+					.ToArray();
+
+				for ( int i = 0; i < Lads.Length; i++ )
+				{
+					if ( ((DrunkenLad)pawn).Lad == Lads[i] )
+					{
+						pawn.Transform = spawnpoints[i % spawnpoints.Length].Transform;
+						break;
+					}
+				}
+
+				return;
+			}
+			
+			base.MoveToSpawnpoint(pawn);
 		}
 	}
 }
