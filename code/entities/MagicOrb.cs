@@ -35,6 +35,8 @@ namespace FlippingTheGlassDrunk.entities
 		[ClientRpc]
 		public void SpawnImpactParticles(Vector3 position)
 		{
+			if ( Owner == null ) return;
+			
 			Particles.Create( "particles/flipping_the_glass_drunk/magic_impact_" + ((DrunkenLad)Owner).Lad.ToLower() + ".vpcf", position );
 		}
 

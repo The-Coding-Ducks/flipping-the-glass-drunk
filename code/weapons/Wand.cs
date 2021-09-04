@@ -22,6 +22,7 @@ namespace FlippingTheGlassDrunk.weapons
 			if ( IsServer )
 			{
 				await Task.Delay( 350 );
+				if ( !Owner.IsValid() ) return;
 				MagicOrb magicOrb = new MagicOrb();
 				magicOrb.Position = Owner.EyePos + new Vector3( 45, -10, -25 ) * Owner.Rotation;
 				magicOrb.Rotation = Owner.Rotation;
