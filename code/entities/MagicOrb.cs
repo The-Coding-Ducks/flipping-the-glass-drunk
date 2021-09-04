@@ -13,6 +13,7 @@ namespace FlippingTheGlassDrunk.entities
 			
 			SetModel( "models/citizen_props/beachball.vmdl" );
 			RenderAlpha = 0;
+			DeleteAsync( 5 );
 		}
 
 		public void Shoot( Rotation ownerRotation )
