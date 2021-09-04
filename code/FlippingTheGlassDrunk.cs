@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using FlippingTheGlassDrunk.player;
@@ -10,6 +11,7 @@ namespace FlippingTheGlassDrunk
 	{
 		[Net]
 		public bool IsGameRunning { get; private set; }
+		public string[] Lads = {"Alfred", "Barklay", "Chad", "Duncan"};
 
 		public FlippingTheGlassDrunk() {
 			IsGameRunning = false;
@@ -43,9 +45,11 @@ namespace FlippingTheGlassDrunk
 
 			RunGameStateChangedEvent(IsGameRunning);
 
+			int index = 0;
 			foreach ( Client client in Client.All.ToList() )
 			{
-				SetClientToDrunkenLad( client );
+				SetClientToDrunkenLad( client, Lads[index] );
+				index++;
 			}
 		}
 
@@ -71,10 +75,11 @@ namespace FlippingTheGlassDrunk
 			client.Pawn = spectator;
 		}
 
-		private void SetClientToDrunkenLad( Client client )
+		private void SetClientToDrunkenLad( Client client, string ladName )
 		{
 			client.Pawn?.Delete();
 			DrunkenLad drunkenLad = new DrunkenLad();
+			drunkenLad.Lad = ladName;
 			drunkenLad.Respawn();
 			client.Pawn = drunkenLad;
 		}

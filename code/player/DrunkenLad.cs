@@ -9,7 +9,7 @@ namespace FlippingTheGlassDrunk.player
 	{
 		private Outfit Outfit { get; set; }
 		[Net, OnChangedCallback] 
-		public string Lad => "Chad";
+		public string Lad { get; set; }
 		public readonly Dictionary<string, Color> LadColor = new()
 		{
 			{"Alfred", new Color( 1, 0, 0 )},
