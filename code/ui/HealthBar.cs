@@ -18,7 +18,6 @@ namespace FlippingTheGlassDrunk.ui
 		[Event("TookDamage")]
 		public void TookDamage()
 		{
-			Log.Info("hey");
 			Label.Text = "";
 
 			if ( Local.Pawn == null ) return;
