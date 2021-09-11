@@ -36,6 +36,7 @@ namespace FlippingTheGlassDrunk.weapons
 			base.SimulateAnimator( anim );
 			
 			anim.SetParam( "holdtype", 4 );
+			anim.SetParam("holdtype_handedness", 1);
 		}
 	}
 }
